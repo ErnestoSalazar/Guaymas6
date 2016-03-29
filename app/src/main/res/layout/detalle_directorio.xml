@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="mx.pitalla.g6.MainActivity">
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView2"
+        android:padding="5dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:background="#ffffff"
+            android:measureWithLargestChild="false">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="match_parent"
+                android:text="Nombre dependencia"
+                android:id="@+id/tvDependencia"
+                android:textColor="#1F3786"
+                android:textAlignment="center"
+                android:textSize="28dp"
+                android:background="#ffffff"
+                android:padding="5dp"
+                android:layout_marginBottom="5dp"
+                android:textStyle="bold"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:layout_marginTop="5dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Teléfono:"
+                    android:id="@+id/textView7"
+                    android:textColor="#BC9706"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp"
+                    android:background="#ffffff"
+                    android:autoLink="phone"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingEnd="5dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="22 2 48 54"
+                    android:id="@+id/tvTelefonoDependencia"
+                    android:textColor="#444246"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp"
+                    android:background="#ffffff"
+                    android:autoLink="phone"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingEnd="10dp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dirección:"
+                    android:id="@+id/textView8"
+                    android:textColor="#BC9706"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp"
+                    android:background="#ffffff"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingEnd="5dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Calle 22 Av. Serdan #105"
+                    android:id="@+id/tvLugarDependencia"
+                    android:textColor="#444246"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp"
+                    android:background="#ffffff"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingEnd="10dp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Página web:"
+                    android:id="@+id/textView9"
+                    android:textColor="#BC9706"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp"
+                    android:background="#ffffff"
+                    android:autoLink="web"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:paddingStart="10dp"
+                    android:layout_marginRight="5dp"
+                    android:paddingEnd="5dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sitio web"
+                    android:id="@+id/tvWeb"
+                    android:textColor="#444246"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp"
+                    android:background="#ffffff"
+                    android:autoLink="web"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:paddingEnd="10dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Localización:"
+                android:id="@+id/textView11"
+                android:textColor="#BC9706"
+                android:textAlignment="textStart"
+                android:textSize="20dp"
+                android:background="#ffffff"
+                android:autoLink="web"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:paddingStart="10dp"
+                android:layout_marginRight="5dp"
+                android:paddingEnd="5dp" />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="182dp"
+                android:text="Inserte mapa aquí"
+                android:id="@+id/tvMapaDependencia"
+                android:textColor="#444246"
+                android:textAlignment="textStart"
+                android:textSize="20dp"
+                android:background="#dddddd"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:padding="5dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

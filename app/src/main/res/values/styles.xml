@@ -1,0 +1,43 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@drawable/fondo</item>
+    </style>
+
+    <style name="TemaNoticias" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_noticias</item>
+        <item name="colorPrimaryDark">@color/color_noticiasDark</item>
+    </style>
+
+    <style name="TemaEventos" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_eventos</item>
+        <item name="colorPrimaryDark">@color/color_eventosDark</item>
+    </style>
+
+    <style name="TemaReporte" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_reporte</item>
+        <item name="colorPrimaryDark">@color/color_reporteDark</item>
+        <item name="colorAccent">@color/color_reporte</item>
+    </style>
+
+    <style name="TemaDirectorio" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/color_directorio</item>
+        <item name="colorPrimaryDark">@color/color_directorioDark</item>
+        <item name="colorAccent">@color/color_directorio</item>
+    </style>
+
+    <style name="action_bar_theme" parent="@style/AppTheme">
+        <item name="android:background">#b3000000</item>
+        <item name="android:titleTextStyle">@string/app_name</item>
+    </style>
+
+</resources>

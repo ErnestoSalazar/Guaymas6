@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context="mx.pitalla.g6.ReporteActivity"
+    android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:minHeight="300dp"
+            android:weightSum="1"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="REPORTE CIUDADANO"
+                android:id="@+id/textView"
+                android:layout_gravity="center_horizontal"
+                android:layout_margin="10dp"
+                android:textColor="#591480"
+                android:textSize="25dp"
+                android:textAlignment="center"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:hint="Interesado"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/contorno_azul"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                android:inputType="textCapWords" />
+
+            <EditText
+                android:id="@+id/editText3"
+                android:hint="Dirección"
+                android:paddingStart="10dp"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/contorno_azul"
+                android:paddingEnd="10dp"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                android:inputType="textCapSentences" />
+
+            <EditText
+                android:id="@+id/editText5"
+                android:hint="Asunto"
+                android:paddingStart="10dp"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:background="@drawable/contorno_azul"
+                android:layout_margin="5dp"
+                android:paddingEnd="10dp"
+                android:padding="10dp"
+                android:gravity="top"
+                android:inputType="textCapSentences" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="130dp">
+
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageButton11"
+                    android:src="@drawable/bache"
+                    android:background="#00000000"
+                    android:layout_weight="1"
+                    android:layout_margin="1dp"
+                    android:scaleType="centerInside" />
+
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageButton10"
+                    android:src="@drawable/alumbrado"
+                    android:background="#00000000"
+                    android:layout_weight="1"
+                    android:layout_margin="1dp"
+                    android:scaleType="centerInside" />
+
+                <ImageButton
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:id="@+id/imageButton12"
+                    android:src="@drawable/otro"
+                    android:background="#00000000"
+                    android:layout_weight="1"
+                    android:layout_margin="1dp"
+                    android:scaleType="centerInside" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/editText4"
+                android:hint="Teléfono"
+                android:paddingStart="10dp"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/contorno_azul"
+                android:paddingEnd="10dp"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                android:inputType="phone|number" />
+
+            <EditText
+                android:id="@+id/editText2"
+                android:hint="Correo"
+                android:paddingStart="10dp"
+                android:textColor="#000000"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/contorno_azul"
+                android:paddingEnd="10dp"
+                android:layout_margin="5dp"
+                android:padding="10dp"
+                android:inputType="textEmailAddress" />
+
+            <Button
+                android:text="Solicitar Petición"
+                android:id="@+id/button"
+                android:background="@drawable/btn_morado"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#ffffff"
+                android:textSize="20dp"
+                android:paddingEnd="10dp"
+                android:paddingStart="10dp"
+                android:layout_margin="10dp"
+                android:padding="10dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

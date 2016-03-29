@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:background="#ffffff">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.99"
+            android:layout_margin="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nombre dependencia"
+                android:id="@+id/txtNombreDep"
+                android:textColor="#1F3786"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:paddingEnd="5dp"
+                android:paddingStart="5dp"
+                android:paddingBottom="3dp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tel:"
+                    android:id="@+id/textView5"
+                    android:textColor="#00bbac"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:paddingStart="5dp"
+                    android:paddingEnd="5dp"
+                    android:layout_marginBottom="2dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="622 123 45 67"
+                    android:id="@+id/txtTelefonoDep"
+                    android:textColor="#00bbac"
+                    android:textStyle="bold"
+                    android:textSize="18dp"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="2dp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Calle 23 av. Serdan num 511 Colonia Centro"
+                android:id="@+id/txtLugarDep"
+                android:textColor="#953DB0"
+                android:textSize="15dp"
+                android:paddingStart="5dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="www.paginaweb.com"
+                android:id="@+id/txtPaginaDep"
+                android:textColor="#319de4"
+                android:textSize="15dp"
+                android:paddingStart="5dp"
+                android:layout_marginBottom="2dp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnLlamarDep"
+                android:src="@drawable/llamar"
+
+                android:background="#00ffffff"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true" />
+        </RelativeLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="3dp"
+        android:id="@+id/imageView4"
+        android:src="@drawable/lineas" />
+</LinearLayout>

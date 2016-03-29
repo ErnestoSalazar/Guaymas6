@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#00cdbd</color>
+    <color name="colorPrimaryDark">#349797</color>
+    <color name="colorAccent">#5b2c7d</color>
+    <color name="foreground_material_light">#ffffff</color>
+    <color name="color_radio">#0fcbc9</color>
+    <color name="color_noticias">#7d0aa1</color>
+    <color name="color_noticiasDark">#61087C</color>
+    <color name="color_directorio">#f5bc08</color>
+    <color name="color_directorioDark">#D5A508</color>
+    <color name="color_reporte">#5089a6</color>
+    <color name="color_reporteDark">#39667C</color>
+    <color name="color_eventos">#e10a5b</color>
+    <color name="color_eventosDark">#BD074D</color>
+</resources>

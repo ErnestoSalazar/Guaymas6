@@ -10,8 +10,8 @@ import java.util.Date;
  */
 public class Noticia  implements Parcelable {
 
-private int id;
-    private  String url;
+    private int id;
+    private String url;
     private String status;
     private String title;
     private String content;
@@ -19,6 +19,7 @@ private int id;
     private String categoria;
     private int  img;
     private String urlimg;
+
     public Noticia() {
     }
 

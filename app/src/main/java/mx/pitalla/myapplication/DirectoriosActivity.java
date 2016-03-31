@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import mx.pitalla.myapplication.adapter.DirectorioAdapter;
 import mx.pitalla.myapplication.entidad.Directorio;
 import mx.pitalla.myapplication.funciones.miActionBar;
+import mx.pitalla.myapplication.sqlite.DBManager;
 
 public class DirectoriosActivity extends AppCompatActivity {
     AQuery aq;
@@ -40,6 +41,7 @@ public class DirectoriosActivity extends AppCompatActivity {
     ListView lvDirectorio;
     EditText inputText;
     Context context;
+    DBManager manager;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -70,6 +72,8 @@ public class DirectoriosActivity extends AppCompatActivity {
         context = this;
         aq = new AQuery(this);
 
+        manager = new DBManager(context);
+
         inputText = (EditText) findViewById(R.id.etBuscarDependencias);
 
         miActionBar ab= new miActionBar(getSupportActionBar(),"directorio");
@@ -98,6 +102,7 @@ public class DirectoriosActivity extends AppCompatActivity {
                 });
             }
         });
+
 
     }
 
@@ -130,6 +135,18 @@ public class DirectoriosActivity extends AppCompatActivity {
                             item.getString("latitud"),
                             item.getString("longitud")
                     ));
+
+                    manager.insertarDirectorios(
+                            item.getString("nombre"),
+                            item.getString("dependencia_text"),
+                            item.getString("tipo"),
+                            item.getString("correo"),
+                            item.getString("telefono"),
+                            item.getString("direccion"),
+                            item.getString("web"),
+                            item.getString("latitud"),
+                            item.getString("longitud"));
+
                 }
 
                 adapter = new DirectorioAdapter(this, listaDirectorio);

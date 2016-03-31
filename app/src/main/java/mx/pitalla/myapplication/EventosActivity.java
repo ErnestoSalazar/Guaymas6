@@ -24,6 +24,7 @@ import mx.pitalla.myapplication.entidad.Evento;
 import mx.pitalla.myapplication.funciones.ConstantesConfiguracion;
 import mx.pitalla.myapplication.funciones.SharedPreferenceHelper;
 import mx.pitalla.myapplication.funciones.miActionBar;
+import mx.pitalla.myapplication.sqlite.DBManager;
 
 public class EventosActivity extends AppCompatActivity {
     AQuery aq;
@@ -31,6 +32,7 @@ public class EventosActivity extends AppCompatActivity {
     ArrayList listaEventos;
     EventoAdapter adapter;
     ListView lvEventos;
+    DBManager manager;
 
 
     int totalPaginas;
@@ -43,6 +45,7 @@ public class EventosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_eventos);
         context = this;
+        manager = new DBManager(context);
         aq = new AQuery(this);
         sharPrefHelper = new SharedPreferenceHelper(ConstantesConfiguracion.SHARED_PREF_NAME, this);
         pagina = Integer.parseInt(sharPrefHelper.getStringFromShprf(ConstantesConfiguracion.PAGINA));
@@ -94,6 +97,15 @@ public class EventosActivity extends AppCompatActivity {
                             item.getString("contacto"),
                             "http://guaymas.gob.mx/wp-content/themes/aquiesguaymas/img/calendario/"+item.getString("imagen")
                     ));
+
+                    manager.insertarEventos(item.getString("nombre_evento"),
+                            item.getString("desc"),
+                            item.getString("fecha"),
+                            item.getString("lugar"),
+                            item.getString("hora"),
+                            item.getString("organiza"),
+                            item.getString("contacto"),
+                            "http://guaymas.gob.mx/wp-content/themes/aquiesguaymas/img/calendario/"+item.getString("imagen"));
 
                 }
 

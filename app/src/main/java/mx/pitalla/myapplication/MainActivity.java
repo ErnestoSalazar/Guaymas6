@@ -2,6 +2,7 @@ package mx.pitalla.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,11 +15,14 @@ import com.androidquery.AQuery;
 
 import mx.pitalla.myapplication.funciones.ConstantesConfiguracion;
 import mx.pitalla.myapplication.funciones.SharedPreferenceHelper;
+import mx.pitalla.myapplication.sqlite.DBManager;
+import mx.pitalla.myapplication.sqlite.DbHelper;
 
 public class MainActivity extends AppCompatActivity {
     ImageButton btnNoticias;
     AQuery aq;
     SharedPreferenceHelper sharPrefHelper;
+    DBManager manager;
 
 
     @Override
@@ -40,6 +44,8 @@ public class MainActivity extends AppCompatActivity {
         });*/
 
         preferencias();
+
+        manager = new DBManager(this);
 
     }
 

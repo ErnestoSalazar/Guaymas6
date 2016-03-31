@@ -27,6 +27,7 @@ import mx.pitalla.myapplication.entidad.Noticia;
 import mx.pitalla.myapplication.funciones.ConstantesConfiguracion;
 import mx.pitalla.myapplication.funciones.SharedPreferenceHelper;
 import mx.pitalla.myapplication.funciones.miActionBar;
+import mx.pitalla.myapplication.sqlite.DBManager;
 
 public class NoticiasActivity extends AppCompatActivity {
     AQuery aq ;
@@ -34,6 +35,7 @@ public class NoticiasActivity extends AppCompatActivity {
     ArrayList listaNoticias;
     NoticiaAdapter adapter;
     ListView lvNoticias;
+    DBManager manager;
 
     int totalNoticiasPagina;
     int totalNoticias;
@@ -48,6 +50,7 @@ public class NoticiasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noticias);
         context=this;
+        manager = new DBManager(context);
         aq = new AQuery(this);
         sharPrefHelper = new SharedPreferenceHelper(ConstantesConfiguracion.SHARED_PREF_NAME, this);
         pagina=Integer.parseInt(sharPrefHelper.getStringFromShprf(ConstantesConfiguracion.PAGINA));
@@ -131,6 +134,15 @@ public class NoticiasActivity extends AppCompatActivity {
                             categoriaa.getJSONObject(0).getString("title"),
                             imgitem.getString("url")
                     ));
+
+//                    manager.insertarNoticias(item.getString("url"),
+//                            item.getString("status"),
+//                            item.getString("title"),
+//                            item.getString("content"),
+//                            item.getString("date"),
+//                            item.getString("categoria"),
+//                            item.getInt("img"),
+//                            item.getString("urlimg"));
 
                 }
 

@@ -4,15 +4,28 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.util.Log;
 
 /**
  * Created by soygo on 29/03/2016.
  */
 public class DBManager {
+
+
+    private DbHelper helper;
+    private SQLiteDatabase db;
+
+    public DBManager(Context context){
+        helper = new DbHelper(context);
+        db = helper.getWritableDatabase();
+    }
+
     //Tabla para el directorio
     public static final String TABLE_NAME_DIRECTORIO = "directorio";
 
-    public static final String CN_ID = "id"; //CN = ColumnName
+    public static final String CN_ID = "_id"; //CN = ColumnName
     public static final String CN_NOMBRE = "nombre";
     public static final String CN_DEPENDENCIA_TEXT = "dependencia_text";
     public static final String CN_TIPO = "tipo";
@@ -54,8 +67,9 @@ public class DBManager {
         db.insert(TABLE_NAME_DIRECTORIO, null, generarContentValuesDirectorios(nombre, dependencia_text, tipo, correo, telefono, direccion, web, latitud, longitud));
     }
 
-    public void eliminarDirectorio(String nombre){
-        db.delete(TABLE_NAME_DIRECTORIO, CN_NOMBRE + "=?", new String[]{nombre});
+    public void eliminarDirectorio(){
+        //db.delete(TABLE_NAME_DIRECTORIO, CN_NOMBRE + "=?", new String[]{nombre});
+        db.execSQL("DELETE  FROM " + TABLE_NAME_DIRECTORIO);
     }
 
     public void modificarRegistroDirectorio(String nombre, String dependencia_text, String tipo, String correo, String nuevoTelefono, String direccion,String web, String latitud, String longitud){
@@ -64,9 +78,13 @@ public class DBManager {
 
     //Recuperar/cargar datos
     public Cursor cargarCursorDirectorios(){
-        String[] columnas = new String[]{CN_NOMBRE, CN_DEPENDENCIA_TEXT, CN_TIPO, CN_CORREO, CN_TELEFONO, CN_DIRECCION, CN_WEB, CN_LAT, CN_LONG};
-        return db.query(TABLE_NAME_DIRECTORIO, columnas, null, null, null, null, null);
+//        String[] columnas = new String[]{CN_NOMBRE, CN_DEPENDENCIA_TEXT, CN_TIPO, CN_CORREO, CN_TELEFONO, CN_DIRECCION, CN_WEB, CN_LAT, CN_LONG};
+//        return db.query(TABLE_NAME_DIRECTORIO, columnas, null, null, null, null, null);
+        Cursor todoCursor = db.rawQuery("SELECT * FROM "+TABLE_NAME_DIRECTORIO,null);
+        return todoCursor;
     }
+
+
 
 
     /*---------------------------------------------------------------------------------------*/
@@ -74,7 +92,7 @@ public class DBManager {
     //Tabla para Evento
     public static final String TABLE_NAME_EVENTO = "evento";
 
-    public static final String CN_ID_E = "id";
+    public static final String CN_ID_E = "_id";
     public static final String CN_NOMBRE_EVENTO = "nombre_evento";
     public static final String CN_DESC_E ="desc";
     public static final String CN_FECHA_E = "fecha";
@@ -114,12 +132,18 @@ public class DBManager {
         db.insert(TABLE_NAME_EVENTO, null, generarContentValuesEventos(nombre_evento, desc, fecha, lugar, hora, organiza, contacto, imagen));
     }
 
-    public void eliminarEvento(String nombre_evento){
-        db.delete(TABLE_NAME_EVENTO, CN_NOMBRE_EVENTO + "=?", new String[]{nombre_evento});
+    public void eliminarEvento(){
+//        db.delete(TABLE_NAME_EVENTO, CN_NOMBRE_EVENTO + "=?", new String[]{nombre_evento});
+        db.execSQL("DELETE FROM "+TABLE_NAME_EVENTO);
     }
 
     public void modificarRegistroEvento(String nombre_evento, String desc ,String fecha,  String lugar,  String hora,  String organiza,  String contacto,  String imagen){
         db.update(TABLE_NAME_EVENTO, generarContentValuesEventos(nombre_evento, desc, fecha, lugar, hora, organiza, contacto, imagen), CN_NOMBRE_EVENTO + "=?", new String[]{nombre_evento});
+    }
+
+    public Cursor cargarCursorEventos(){
+        Cursor todoCursor = db.rawQuery("SELECT * FROM "+TABLE_NAME_EVENTO,null);
+        return todoCursor;
     }
 
 
@@ -181,12 +205,51 @@ public class DBManager {
 
 
 
+    //Comprobamos que exista conexión a internet
 
-    private DbHelper helper;
-    private SQLiteDatabase db;
+    //Conexion a wifi
+    protected Boolean conexionWifi(Context context){
+        ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivity != null){
+            NetworkInfo info = connectivity.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 
-    public DBManager(Context context){
-        helper = new DbHelper(context);
-        db = helper.getWritableDatabase();
+            if(info != null){
+                if(info.isConnected()){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
+
+    //Conecxion via Datos
+    protected Boolean conexionDatos(Context context){
+        ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        if(connectivity != null){
+            NetworkInfo info = connectivity.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+            if(info != null){
+                if(info.isConnected()){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    //Creamos un metodo general para saber si estamos conectados con wifi o datos :D
+    public Boolean tipoConexion(Context context){
+        if(conexionWifi(context)){
+            Log.i("Conexion: ","Estas conectado via wifi");
+            return true;
+        }
+        else if(conexionDatos(context)){
+            Log.i("Conexion: ","Estacas conectado via datos");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 }

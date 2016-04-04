@@ -2,6 +2,7 @@ package mx.pitalla.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -15,7 +16,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,20 +31,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import mx.pitalla.myapplication.adapter.DirectorioAdapter;
+import mx.pitalla.myapplication.cursoradapter.DirectorioCursorAdapter;
 import mx.pitalla.myapplication.entidad.Directorio;
 import mx.pitalla.myapplication.funciones.miActionBar;
 import mx.pitalla.myapplication.sqlite.DBManager;
 
 public class DirectoriosActivity extends AppCompatActivity {
     AQuery aq;
+    Cursor cursor;
     ArrayList listaDirectorio;
     DirectorioAdapter adapter;
+    DirectorioCursorAdapter cursorAdapter;
     ListView lvDirectorio;
     EditText inputText;
     Context context;
     DBManager manager;
+    List<String> item;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,7 +79,6 @@ public class DirectoriosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_directorio);
         context = this;
         aq = new AQuery(this);
-
         manager = new DBManager(context);
 
         inputText = (EditText) findViewById(R.id.etBuscarDependencias);
@@ -80,7 +87,7 @@ public class DirectoriosActivity extends AppCompatActivity {
 
         listaDirectorio = new ArrayList<Directorio>();
 
-        asyncJson();
+
 
         inputText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -103,6 +110,13 @@ public class DirectoriosActivity extends AppCompatActivity {
             }
         });
 
+        if(manager.tipoConexion(context)){
+            manager.eliminarDirectorio();
+            asyncJson();
+        }
+        else {
+            llenarListView();
+        }
 
     }
 
@@ -115,6 +129,7 @@ public class DirectoriosActivity extends AppCompatActivity {
         String url = "http://app.guaymas.gob.mx/api2.php/dependencia/"+busqueda;
         aq.ajax(url, JSONArray.class, this, "jsonCallBack");
     }
+
 
     public void jsonCallBack(String url, JSONArray json, AjaxStatus status){
         if(json != null){
@@ -180,6 +195,37 @@ public class DirectoriosActivity extends AppCompatActivity {
         //Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, FavoritosActivity.class);
         startActivity(intent);
+    }
+
+    //LLena la listView con datos guardados en SQLite
+    private void llenarListView(){
+        cursor = manager.cargarCursorDirectorios();
+        item = new ArrayList<String>();
+        String nombre ="", correo = "", telefono = "", direccion = "", web = "";
+
+        if(cursor.moveToFirst()){
+            //Recorremos el cursor hasta que no haya mas registros
+
+            do{
+                nombre = cursor.getString(0);
+                correo = cursor.getString(3);
+                telefono = cursor.getString(4);
+                direccion = cursor.getString(5);
+                web = cursor.getString(6);
+
+                item.add(nombre + " " + correo + " " + telefono + " " + direccion + " " + web );
+            }
+            while(cursor.moveToNext());
+        }
+
+        try {
+            DirectorioCursorAdapter adaptador = new DirectorioCursorAdapter(context, cursor, 0);
+            lvDirectorio = (ListView) findViewById(R.id.lvDependencias);
+            lvDirectorio.setAdapter(adaptador);
+        }
+        catch(Exception ex){
+            ex.getCause().printStackTrace();
+        }
     }
 
 }

@@ -2,6 +2,7 @@ package mx.pitalla.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,8 +19,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 import mx.pitalla.myapplication.adapter.EventoAdapter;
+import mx.pitalla.myapplication.cursoradapter.EventoCursorAdapter;
 import mx.pitalla.myapplication.entidad.Evento;
 import mx.pitalla.myapplication.funciones.ConstantesConfiguracion;
 import mx.pitalla.myapplication.funciones.SharedPreferenceHelper;
@@ -28,11 +31,13 @@ import mx.pitalla.myapplication.sqlite.DBManager;
 
 public class EventosActivity extends AppCompatActivity {
     AQuery aq;
+    Cursor cursor;
     Evento evento;
     ArrayList listaEventos;
     EventoAdapter adapter;
     ListView lvEventos;
     DBManager manager;
+    List<String> item;
 
 
     int totalPaginas;
@@ -54,7 +59,14 @@ public class EventosActivity extends AppCompatActivity {
         miActionBar ab= new miActionBar(getSupportActionBar(),"evento");
         listaEventos = new ArrayList<Evento>();
         totalPaginas = -1;
-        asyncJson();
+
+        if(manager.tipoConexion(context)) {
+            manager.eliminarEvento();
+            asyncJson();
+        }
+        else{
+            llenarListView();
+        }
 
 
     }
@@ -142,5 +154,32 @@ public class EventosActivity extends AppCompatActivity {
     }
 
 
+
+
+    //Llena la listView con datos guardados de SQLite
+    private void llenarListView(){
+        cursor = manager.cargarCursorEventos();
+        item = new ArrayList<String>();
+        String nombre_evento ="", fecha = "", lugar = "";
+
+        if(cursor.moveToFirst()){
+            do{
+                nombre_evento = cursor.getString(1);
+                fecha = cursor.getString(3);
+                lugar = cursor.getString(4);
+                item.add(nombre_evento + " "+ fecha + " " + lugar);
+            }
+            while(cursor.moveToNext());
+        }
+
+        try{
+            EventoCursorAdapter adaptador = new EventoCursorAdapter(context, cursor,0);
+            lvEventos = (ListView) findViewById(R.id.lvEventos);
+            lvEventos.setAdapter(adaptador);
+        }
+        catch(Exception ex){
+            ex.getCause().printStackTrace();
+        }
+    }
 
 }

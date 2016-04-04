@@ -135,7 +135,8 @@ public class NoticiasActivity extends AppCompatActivity {
                             imgitem.getString("url")
                     ));
 
-//                    manager.insertarNoticias(item.getString("url"),
+//                    manager.insertarNoticias(
+//                            item.getString("url"),
 //                            item.getString("status"),
 //                            item.getString("title"),
 //                            item.getString("content"),

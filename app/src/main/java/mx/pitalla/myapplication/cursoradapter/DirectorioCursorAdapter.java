@@ -37,9 +37,31 @@ public class DirectorioCursorAdapter extends CursorAdapter{
         String lugarDep = cursor.getString(cursor.getColumnIndexOrThrow("direccion"));
         String paginaDep = cursor.getString(cursor.getColumnIndexOrThrow("web"));
 
-        txtNombreDep.setText(nombreDep);
-        txtTelefonoDep.setText(telefonoDep);
-        txtLugarDep.setText(lugarDep);
-        txtPaginaDep.setText(paginaDep);
+        if(nombreDep.isEmpty() || nombreDep.equals("null")) {
+            txtNombreDep.setText("Nombre de dependencia no disponible");
+        }
+        else{
+            txtNombreDep.setText(nombreDep);
+        }
+        if(telefonoDep.isEmpty() || telefonoDep.equals("null")) {
+            txtTelefonoDep.setText("No disponible");
+        }
+        else{
+            txtTelefonoDep.setText(telefonoDep);
+        }
+        if(lugarDep.isEmpty() || lugarDep.equals("null")){
+            txtLugarDep.setText("Dirección no disponible");
+        }
+        else{
+            txtLugarDep.setText(lugarDep);
+        }
+        if(paginaDep.isEmpty() || paginaDep.equals("null")){
+            txtPaginaDep.setText("Página web no disponible");
+        }
+        else{
+            txtPaginaDep.setText(paginaDep);
+        }
+
+
     }
 }

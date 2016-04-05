@@ -154,7 +154,7 @@ public class DBManager {
     //Tabla para Noticia
     public static final String TABLE_NAME_NOTICIA = "noticia";
 
-    public static final String CN_ID_N = "id";
+    public static final String CN_ID_N = "_id";
     public static final String CN_URL_N = "url";
     public static final String CN_STATUS_N = "status";
     public static final String CN_TITLE_N = "title";

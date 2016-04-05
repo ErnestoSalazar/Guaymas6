@@ -66,6 +66,7 @@ public class EventosActivity extends AppCompatActivity {
         }
         else{
             llenarListView();
+            aq.progress(R.id.progressBar);
         }
 
 
